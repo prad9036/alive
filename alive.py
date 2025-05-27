@@ -13,13 +13,13 @@ with sync_playwright() as p:
     time.sleep(10)
 
     # Reload the page
-    #page.reload()
+    page.reload()
 
     # Stay on the page for another 5 seconds after reload
-    #time.sleep(5)
+    time.sleep(5)
 
     # (Optional) Wait for 10 minutes before ending the script
-    #time.sleep(600)  # Uncomment this if you want a forced 10-min delay
+    time.sleep(20)  # Uncomment this if you want a forced 10-min delay
 
     # Close the browser
     browser.close()
