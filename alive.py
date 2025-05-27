@@ -19,7 +19,7 @@ with sync_playwright() as p:
     time.sleep(5)
 
     # (Optional) Wait for 10 minutes before ending the script
-    time.sleep(20)  # Uncomment this if you want a forced 10-min delay
+    time.sleep(100)  # Uncomment this if you want a forced 10-min delay
 
     # Close the browser
     browser.close()
