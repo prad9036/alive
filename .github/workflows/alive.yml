@@ -1,25 +1,22 @@
-import time
-from playwright.sync_api import sync_playwright
+name: Keep Streamlit App Alive
 
-# Start playwright and launch browser only once
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)  # headless=False to make it behave like a real user
-    page = browser.new_page()
+on:
+  schedule:
+    - cron: '*/600 * * * *'  # Runs every 10 minutes
+  workflow_dispatch:         # Allows manual triggering
 
-    # Navigate to the URL
-    page.goto('https://pdtest.streamlit.app/')
-
-    # Stay on the page for 5 seconds
-    time.sleep(5)
-
-    # Reload the page
-    page.reload()
-
-    # Stay on the page for another 5 seconds after reload
-    time.sleep(5)
-
-    # (Optional) Wait for 10 minutes before ending the script
-    #time.sleep(600)  # Uncomment this if you want a forced 10-min delay
-
-    # Close the browser
-    browser.close()
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+      - name: Run keep_alive script
+        run: python alive.py
