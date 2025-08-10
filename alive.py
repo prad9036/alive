@@ -4,17 +4,24 @@ from playwright.sync_api import sync_playwright
 # Start playwright and launch browser only once
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)  # headless=False to make it behave like a real user
-    page = browser.new_page()
-
+    
+    page1 = browser.new_page()
     # Navigate to the URL
-    page.goto('https://pdtest.streamlit.app/')
-
+    page1.goto('https://pdtest.streamlit.app/')
     # Stay on the page for 5 seconds
     time.sleep(10)
-
     # Reload the page
-    page.reload()
+    page1.reload()
+    # Stay on the page for another 5 seconds after reload
+    time.sleep(5)
 
+    page2 = browser.new_page()
+    # Navigate to the URL
+    page2.goto('https://pdtest.streamlit.app/')
+    # Stay on the page for 5 seconds
+    time.sleep(10)
+    # Reload the page
+    page2.reload()
     # Stay on the page for another 5 seconds after reload
     time.sleep(5)
 
