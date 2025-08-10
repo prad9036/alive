@@ -17,7 +17,7 @@ with sync_playwright() as p:
 
     page2 = browser.new_page()
     # Navigate to the URL
-    page2.goto('https://pdtest.streamlit.app/')
+    page2.goto('https://tgbotapi.streamlit.app/')
     # Stay on the page for 5 seconds
     time.sleep(10)
     # Reload the page
